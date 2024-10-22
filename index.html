@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="src/scripts/style.css" />
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h1>Weather Dashboard</h1>
+            <div class="location-search">
+                <input type="text" id="location-input" placeholder="Enter City or Use Geolocation" />
+                <button id="search-button">Search</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="layout">
+        <img class="hero-image" src="src/images/Sunny.jpg" alt="Sunny Day"></img>
+        <aside class="sidebar">
+            <nav class="icon-grid">
+                <button class="icon-item">🏠<span class="icon-label">Home</span></button>
+                <button class="icon-item">🌤️<span class="icon-label">Forecast</span></button>
+                <button class="icon-item">🗺️<span class="icon-label">Maps</span></button>
+                <button class="icon-item">📅<span class="icon-label">Monthly Forecast</span></button>
+                <button class="icon-item">📜<span class="icon-label">Forecast History</span></button>
+                <button class="icon-item">🎨<span class="icon-label">Themes</span></button>
+            </nav>
+        </aside>
+
+        <div class="warnings">
+            <h3>Warnings</h3>
+            <p>No current weather warnings.</p>
+        </div>
+
+        <div class="main-content">
+            <section id="current-weather">
+                <h2>Current Location</h2>
+                <div class="weather-details">
+                    <span id="temperature"></span>
+                    <img id="weather-icon" src="" alt="Weather Icon" />
+                    <p id="weather-description"></p>
+                </div>
+            </section>
+
+            <section id="additional-info">
+                <ul>
+                    <li id="wind-status" class="icon"><span class="label">🌬️</span></li>
+                    <li id="uv-index" class="icon"><span class="label">☀️</span></li>
+                    <li id="sunrise-sunset" class="icon"><span class="label">🌅</span></li>
+                    <li id="humidity" class="icon"><span class="label">💧</span></li>
+                    <li id="dew-point" class="icon"><span class="label">🌫️</span></li>
+                    <li id="pollen-level" class="icon"><span class="label">🌾 </span></li>
+                </ul>
+            </section>
+
+            <section id="hourly-forecast">
+                <h2>Hourly Forecast</h2>
+                <ul id="hourly-forecast-list"></ul>
+            </section>
+
+            <section id="forecast">
+                <h2>7-Day Forecast</h2>
+                <ul id="forecast-list"></ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- <script src="src/js/main.js" type="module"></script> -->
+</body>
+
+</html>
