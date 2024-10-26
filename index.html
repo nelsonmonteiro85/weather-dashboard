@@ -10,15 +10,18 @@
 
 <body>
     <header>
-        <div class="logo">
-            <h1>Weather Dashboard</h1>
+        <h1>Weather Dashboard</h1>
+        <div class="header-controls">
+            <div class="hamburger-menu">
+                <button id="menu-toggle">☰</button> <!-- Hamburger icon -->
+            </div>
             <div class="location-search">
-                <input type="text" id="location-input" placeholder="Enter City or Use Geolocation" />
+                <input type="text" id="location-input" placeholder="Enter location" />
                 <button id="search-button">Search</button>
             </div>
         </div>
     </header>
-
+    
     <main class="layout">
         <img class="hero-image" src="src/images/Sunny.jpg" alt="Sunny Day"></img>
         <aside class="sidebar">

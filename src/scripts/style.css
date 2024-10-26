@@ -2,6 +2,7 @@
 
 :root {
   --primary-color: #5DADE2;
+  --primary-color-rgb: 93, 173, 226;
   --secondary-color: #273849;
   --alert-color: #E74C3C;
   --background-color: #ECF0F1;
@@ -38,8 +39,20 @@ header {
   width: 100%;
 }
 
+header h1 {
+  margin: 0;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
 .location-search {
-  margin: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .location-search input {
@@ -59,9 +72,15 @@ header {
   cursor: pointer;
 }
 
-.location-search button:hover{
+.location-search button:hover {
   background-color: var(--primary-color);
   color: var(--secondary-color);
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+  display: none;
+  /* Hidden by default, shown on mobile */
 }
 
 .hero-image {
@@ -73,7 +92,6 @@ header {
   margin: 0 auto;
   width: 100%;
   height: 100%;
-  /* z-index: -1; */
   opacity: 0.6;
   filter: blur(5px);
 }
@@ -98,6 +116,21 @@ header {
   flex-direction: column;
   justify-content: space-between;
   opacity: 0.9;
+  border-radius: 0 10px 10px 0;
+  transition: transform 0.3s ease;
+}
+
+.hamburger-menu {
+  display: none;
+}
+
+.hamburger-menu button {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  /* padding: 10px; */
   border-radius: 5px;
 }
 
@@ -170,7 +203,8 @@ header {
   grid-template-columns: auto;
   grid-template-rows: auto;
   padding: 20px;
-  border: 2px solid var(--alert-color); /* temporary */
+  background-color: rgba(var(--primary-color-rgb), 0.6);
+  border-radius: 10px;
 }
 
 #additional-info {
@@ -181,7 +215,8 @@ header {
   grid-template-rows: repeat(2, auto);
   gap: 20px;
   padding: 20px;
-  border: 2px solid var(--alert-color); /* temporary */
+  background-color: rgba(var(--primary-color-rgb), 0.6);
+  border-radius: 10px;
 }
 
 #additional-info ul {
@@ -190,6 +225,8 @@ header {
   padding: 0;
   margin: 0;
   display: contents;
+  background-color: rgba(var(--primary-color-rgb), 0.6);
+  border-radius: 10px;
 }
 
 #additional-info li {
@@ -218,7 +255,8 @@ header {
   grid-template-columns: auto;
   grid-template-rows: auto;
   padding: 20px;
-  border: 2px solid var(--alert-color); /* temporary */
+  background-color: rgba(var(--primary-color-rgb), 0.6);
+  border-radius: 10px;
 }
 
 #forecast {
@@ -228,5 +266,126 @@ header {
   grid-template-columns: auto;
   grid-template-rows: auto;
   padding: 20px;
-  border: 2px solid var(--alert-color); /* temporary */
+  background-color: rgba(var(--primary-color-rgb), 0.6);
+  border-radius: 10px;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 992px) {
+  body {
+    font-size: 14px;
+  }
+
+  .layout {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 13px;
+    margin: 0;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .hamburger-menu {
+    display: block;
+    margin-right: 10px;
+  }
+
+  .location-search {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  header h1 {
+    font-size: 18px;
+    margin: 0;
+  }
+
+  .warnings {
+    grid-column: 1 / -1;
+    grid-row: 10;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 0;
+    margin-top: -25px;
+  }
+
+  .layout {
+    grid: none;
+  }
+
+  .hero-image {
+    display: none;
+  }
+
+  .main-content {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, auto);
+    gap: 5px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  #current-weather {
+    grid-column: 1;
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+  }
+
+  #additional-info {
+    grid-column: 1;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+  }
+
+  #hourly-forecast {
+    grid-column: 1;
+    grid-row: 3;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+  }
+
+  #forecast {
+    grid-column: 1;
+    grid-row: 4;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+  }
 }
