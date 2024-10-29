@@ -54,6 +54,7 @@ async function fetchWeather(location) {
     showLoading();
     try {
         const weatherAPIData = await WeatherService.fetchWeatherAPI(location);
+        console.log("Weather API Data:", weatherAPIData); // Log the response
         displayWeather(weatherAPIData);
     } catch (error) {
         console.error("Error fetching weather data:", error);
