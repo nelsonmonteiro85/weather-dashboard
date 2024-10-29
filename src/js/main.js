@@ -114,23 +114,24 @@ function displayWeather(weatherData) {
         const hourlyForecastList = document.getElementById("hourly-forecast-list");
         hourlyForecastList.innerHTML = ""; // Clear existing entries
 
-        // Get current hour to only show future hours
         const currentHour = new Date().getHours();
+        const todayHours = weatherData.forecast.forecastday[0].hour.slice(currentHour); // Hours remaining today
+        const tomorrowHours = weatherData.forecast.forecastday[1]?.hour || []; // Next day's hours, if available
 
-        weatherData.forecast.forecastday[0].hour
-            .filter((hour, index) => index >= currentHour)
-            .slice(0, 12)
-            .forEach(hour => {
-                const listItem = document.createElement("li");
-                const time = new Date(hour.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                listItem.innerHTML = `
-                    <div class="hourly-forecast-item">
-                        <span class="time">${time}</span>
-                        <img src="${hour.condition.icon}" alt="${hour.condition.text}" class="small-weather-icon">
-                        <span class="temp">${hour.temp_c}°C</span>
-                    </div>`;
-                hourlyForecastList.appendChild(listItem);
-            });
+        // Combine today and tomorrow's hours to get 24 hours from the current hour
+        const next24Hours = todayHours.concat(tomorrowHours).slice(0, 24);
+
+        next24Hours.forEach(hour => {
+            const listItem = document.createElement("li");
+            const time = new Date(hour.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            listItem.innerHTML = `
+            <div class="hourly-forecast-item">
+                <span class="time">${time}</span>
+                <img src="${hour.condition.icon}" alt="${hour.condition.text}" class="small-weather-icon">
+                <span class="temp">${hour.temp_c}°C</span>
+            </div>`;
+            hourlyForecastList.appendChild(listItem);
+        });
     }
 
     // 7-Day Forecast
@@ -178,7 +179,7 @@ function displayRecentSearches() {
     const searches = JSON.parse(localStorage.getItem('recentSearches') || '[]');
     const container = document.getElementById('recent-searches');
     if (!container) return;
-    
+
     container.innerHTML = '';
     searches.forEach(search => {
         const button = document.createElement('button');
