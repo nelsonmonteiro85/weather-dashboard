@@ -5,10 +5,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Dashboard</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <!-- Your custom CSS -->
     <link rel="stylesheet" href="src/scripts/style.css" />
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 </head>
 
+
 <body>
+    <div class="loading-spinner"></div>
     <header>
         <h1>Weather Dashboard</h1>
         <div class="header-controls">
@@ -18,6 +29,7 @@
             <div class="location-search">
                 <input type="text" id="location-input" placeholder="Enter location" />
                 <button id="search-button">Search</button>
+                <button id="get-location" class="location-btn">📍 My Location</button>
             </div>
         </div>
     </header>
@@ -29,7 +41,7 @@
                 <button class="icon-item">🌤️<span class="icon-label">Forecast</span></button>
                 <button class="icon-item">🗺️<span class="icon-label">Maps</span></button>
                 <button class="icon-item">📅<span class="icon-label">Monthly Forecast</span></button>
-                <button class="icon-item">📜<span class="icon-label">Forecast History</span></button>
+                <button class="icon-item">📜<span class="icon-label">Recent Searches</span><div id="recent-searches" class="recent-searches"></div></button>
                 <button class="icon-item" id="darkModeToggle" aria-label="Toggle dark mode">🌙<span
                         class="icon-label">Toggle Dark Mode</span></button>
             </nav>
@@ -92,6 +104,22 @@
             <ul id="forecast-list"></ul>
         </section>
     </main>
+
+    <div class="modal" id="myModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Modal Title</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Your content goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="confirm">Confirm</button>
+                <button id="cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
 
     <script src="src/js/main.js" type="module"></script>
 </body>

@@ -28,13 +28,19 @@ document.getElementById("current-location-button").addEventListener("click", asy
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(async (position) => {
             const { latitude, longitude } = position.coords;
-            const weatherData = await WeatherService.fetchWeatherByCoordinates(latitude, longitude);
-            UIController.displayWeather(weatherData);
-            AlertManager.checkAlerts(weatherData);
+            try {
+                const weatherData = await WeatherService.fetchWeatherByCoordinates(latitude, longitude);
+                UIController.displayWeather(weatherData);
+                AlertManager.checkAlerts(weatherData);
 
-            // Fetch and display hourly forecast
-            const hourlyForecast = await WeatherService.fetchHourlyForecast(`${latitude},${longitude}`);
-            UIController.displayHourlyForecast(hourlyForecast);
+                // Fetch and display hourly forecast
+                const hourlyForecast = await WeatherService.fetchHourlyForecast(`${latitude},${longitude}`);
+                UIController.displayHourlyForecast(hourlyForecast);
+            } catch (error) {
+                alert("Could not fetch weather data for your current location. Please try again.");
+            }
+        }, (error) => {
+            alert("Unable to retrieve your location. Please check your location settings.");
         });
     } else {
         alert("Geolocation is not supported by this browser.");
